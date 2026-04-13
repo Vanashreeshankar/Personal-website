@@ -15,7 +15,7 @@ export default function WorkSection({setShowNavbar}) {
 
   /* FETCH */
   useEffect(() => {
-    fetch("http://localhost:5000/api/projects")
+    fetch("https://personal-website-three-omega-48.vercel.app/projects")
       .then((res) => res.json())
       .then((data) => setProjects(data))
       .catch(console.error);
