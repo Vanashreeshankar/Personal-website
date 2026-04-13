@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#84cc16"/>
+      <stop offset="100%" stop-color="#f97316"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 🔥 SUPER EDGE-FILL CORE -->
+  <circle cx="32" cy="32" r="31.5" fill="#000"/>
+
+  <!-- 🔥 THIN EDGE RING (not bulky) -->
+  <circle
+    cx="32"
+    cy="32"
+    r="31.5"
+    fill="none"
+    stroke="url(#g)"
+    stroke-width="1.5"
+  />
+
+  <!-- 🎯 MAX SIZE TEXT -->
+  <g transform="translate(32,32)">
+    <text
+      text-anchor="middle"
+      dy="0.38em"
+      font-size="36"   
+      font-family="Inter, Arial, sans-serif"
+      font-weight="700"
+      fill="url(#g)"
+    >
+      VS
+    </text>
+  </g>
+</svg>
