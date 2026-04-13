@@ -16,10 +16,10 @@ export default function Home({ setShowNavbar, isFirstLoad }) {
 
     const API_URL =
       window.location.hostname === "localhost"
-        ? "http://localhost:5000"
+        ? "https://personal-website-three-omega-48.vercel.app"
         : "";
 
-    fetch(`${API_URL}/api/visit?ref=${ref}`).catch(() => {});
+    fetch(`https://personal-website-three-omega-48.vercel.app/visit?ref=${ref}`).catch(() => {});
   }, []);
 
   useEffect(() => {
