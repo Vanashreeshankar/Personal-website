@@ -12,7 +12,7 @@ export default function Project() {
   const yParallax = useTransform(scrollYProgress, [0, 1], [0, -40]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/projects/${id}`)
+    fetch(`https://personal-website-three-omega-48.vercel.app/${id}`)
       .then((res) => res.json())
       .then((data) => setProject(data))
       .catch((err) => console.error(err));
