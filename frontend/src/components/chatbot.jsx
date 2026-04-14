@@ -68,7 +68,7 @@ export default function Chatbot({ setShowContact }) {
 
     if (action === "resume") {
       window.open(
-        "https://drive.google.com/file/d/1dkchoRPaSLBHe6LAyj1_Ai-2vsdp8bcQ/view?usp=sharing"
+        "https://drive.google.com/file/d/1pGmy83VbHZtUeYLAz63Jhpd7Z5mF792C/view?usp=drive_link"
       );
     }
 
