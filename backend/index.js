@@ -17,7 +17,7 @@ const app = express();
 
 // CORS
 app.use(cors({
-  origin: "https://vanashree-personal-website.vercel.app", // Update with your frontend URL
+  origin: "https://vanashree-portfolio-site.vercel.app", // Update with your frontend URL
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
  
   credentials: true
