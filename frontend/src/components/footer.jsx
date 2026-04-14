@@ -97,7 +97,7 @@ export default function Footer() {
 
           {/* RIGHT: Resume */}
           <motion.a
-            href="https://drive.google.com/file/d/1pGmy83VbHZtUeYLAz63Jhpd7Z5mF792C/view?usp=drive_link"
+            href="https://drive.google.com/file/d/1Pjh_bVxS2jFO2mIF7j5lYQd_z8Iva4S0/view?usp=sharing"
             target="_blank"
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
