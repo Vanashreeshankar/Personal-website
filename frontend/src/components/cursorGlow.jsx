@@ -37,20 +37,20 @@ const CursorGlow = () => {
 
       {/* Orange Large Cursor (smooth follower) */}
       <motion.div
-        className="fixed top-0 left-0 w-16 h-16 rounded-full pointer-events-none z-[998]"
+        className="fixed top-0 left-0 w-8 h-8 rounded-full pointer-events-none z-[998]"
         animate={{
-          x: position.x - 32,
-          y: position.y - 32,
+          x: position.x - 16,
+          y: position.y - 16,
         }}
         transition={{
           type: "spring",
-          stiffness: 120,
-          damping: 20,
+          stiffness: 140,
+          damping: 18,
         }}
         style={{
-          background:
-            "radial-gradient(circle, rgba(255,165,0,0.4) 0%, rgba(255,165,0,0.2) 40%, transparent 70%)",
-          filter: "blur(20px)",
+          border: "2px solid rgba(255,165,0,0.9)",
+          background: "transparent",
+          boxShadow: "0 0 8px rgba(255,165,0,0.5)",
         }}
       />
     </>
