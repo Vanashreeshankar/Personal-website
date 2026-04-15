@@ -140,8 +140,11 @@ export default function Footer() {
           <div className="w-full md:flex-1 h-px bg-gradient-to-r from-transparent via-lime-400/20 to-transparent" />
 
           <span className="px-4 text-xs md:text-sm text-gray-500">
-            Built with <span className="text-white">React</span> • Styled with{" "}
-            <span className="text-white">CSS</span> • Deployed on{" "}
+            Built with <span className="text-white hover:text-lime-400 transition cursor-pointer">
+              React
+            </span> •{" "}
+            <span className="text-white">Tailwind CSS</span> •{" "}
+            <span className="text-white">Framer Motion</span> • Deployed on{" "}
             <span className="text-white hover:text-lime-400 transition">
               Vercel ↗
             </span>
