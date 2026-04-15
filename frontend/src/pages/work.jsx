@@ -2,13 +2,15 @@ import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
-export default function WorkSection({setShowNavbar}) {
+export default function WorkSection({ setShowNavbar }) {
   const [projects, setProjects] = useState([]);
   const [activeIndex, setActiveIndex] = useState(0);
   const [direction, setDirection] = useState(1);
 
   /* MOBILE STATE*/
   const [[mobileIndex, mobileDirection], setMobileIndex] = useState([0, 0]);
+
+  const [videoLoading, setVideoLoading] = useState(true);
 
   const containerRef = useRef(null);
   const lastIndex = useRef(0);
@@ -21,17 +23,26 @@ export default function WorkSection({setShowNavbar}) {
       .catch(console.error);
   }, []);
 
-  /* make sure Navabar always visible*/
-  
+  /* make sure Navbar always visible*/
   useEffect(() => {
     setShowNavbar(true);
-  }, []);
-  /*DESKTOP SCROLL */
+  }, [setShowNavbar]);
+
+  /* RESET LOADING WHEN VIDEO CHANGES */
+  useEffect(() => {
+    setVideoLoading(true);
+  }, [activeIndex]);
+
+  useEffect(() => {
+    setVideoLoading(true);
+  }, [mobileIndex]);
+
+  /* DESKTOP SCROLL */
   useEffect(() => {
     if (!projects.length) return;
 
     const handleScroll = () => {
-      if (window.innerWidth < 768) return; // 🔥 ignore on mobile
+      if (window.innerWidth < 768) return;
 
       const rect = containerRef.current.getBoundingClientRect();
       const vh = window.innerHeight;
@@ -76,28 +87,22 @@ export default function WorkSection({setShowNavbar}) {
 
   /* SWIPE ANIMATION */
   const swipeVariants = {
-  enter: (direction) => {
-    return {
+    enter: (direction) => ({
       y: direction > 0 ? 120 : -120,
       opacity: 0,
       scale: 0.98,
-    };
-  },
-
-  center: {
-    y: 0,
-    opacity: 1,
-    scale: 1,
-  },
-
-  exit: (direction) => {
-    return {
+    }),
+    center: {
+      y: 0,
+      opacity: 1,
+      scale: 1,
+    },
+    exit: (direction) => ({
       y: direction > 0 ? -120 : 120,
       opacity: 0,
       scale: 0.98,
-    };
-  },
-};
+    }),
+  };
 
   if (!projects.length) {
     return <div className="h-screen bg-black" />;
@@ -106,7 +111,7 @@ export default function WorkSection({setShowNavbar}) {
   return (
     <div className="bg-black text-white antialiased">
 
-      {/*  DESKTOP */}
+      {/* DESKTOP */}
       <div
         ref={containerRef}
         className="hidden md:block snap-y snap-mandatory"
@@ -126,7 +131,14 @@ export default function WorkSection({setShowNavbar}) {
                 className="w-full max-w-[700px]"
               >
                 <div className="p-[2px] rounded-2xl bg-gradient-to-br from-lime-400 to-orange-400">
-                  <div className="bg-black rounded-2xl p-3">
+                  <div className="bg-black rounded-2xl p-3 relative">
+
+                    {videoLoading && (
+                      <div className="absolute inset-0 flex items-center justify-center z-10">
+                        <div className="w-10 h-10 border-4 border-dotted border-lime-400 border-t-orange-400 rounded-full animate-spin"></div>
+                      </div>
+                    )}
+
                     <video
                       key={activeIndex}
                       src={projects[activeIndex].video}
@@ -134,6 +146,8 @@ export default function WorkSection({setShowNavbar}) {
                       muted
                       loop
                       playsInline
+                      preload="metadata"
+                      onLoadedData={() => setVideoLoading(false)}
                       className="w-full max-h-[60vh] object-cover rounded-xl"
                     />
                   </div>
@@ -153,24 +167,24 @@ export default function WorkSection({setShowNavbar}) {
                 transition={{ duration: 0.5 }}
                 className="max-w-2xl"
               >
-                <h2 className="font-heading text-4xl md:text-5xl font-semibold leading-tight tracking-[-0.01em] mb-6">
+                <h2 className="font-heading text-4xl md:text-5xl font-semibold mb-6">
                   {projects[activeIndex].title}
                 </h2>
 
-                <p className="text-white/70 text-lg leading-relaxed tracking-[-0.01em] mb-10">
+                <p className="text-white/70 text-lg mb-10">
                   {projects[activeIndex].description}
                 </p>
 
                 <div className="flex items-center justify-between">
                   <Link to={`/projects/${projects[activeIndex]._id}`}>
                     <div className="rounded-full p-[1px] bg-gradient-to-r from-lime-400 to-orange-400 hover:scale-105 transition duration-300">
-                      <div className="px-6 py-3 rounded-full bg-black text-sm tracking-wide">
+                      <div className="px-6 py-3 rounded-full bg-black text-sm">
                         View Case Study
                       </div>
                     </div>
                   </Link>
 
-                  <div className="text-white/50 text-sm tracking-[-0.15]">
+                  <div className="text-white/50 text-sm">
                     [{String(activeIndex + 1).padStart(2, "0")} /{" "}
                     {String(projects.length).padStart(2, "0")}]
                   </div>
@@ -182,7 +196,7 @@ export default function WorkSection({setShowNavbar}) {
         </div>
       </div>
 
-      {/* MOBILE (GESTURE SWIPE) */}
+      {/* MOBILE */}
       <div className="md:hidden h-screen overflow-hidden relative">
 
         <AnimatePresence initial={false} custom={mobileDirection}>
@@ -199,9 +213,8 @@ export default function WorkSection({setShowNavbar}) {
             dragElastic={0.2}
             onDragEnd={(e, info) => {
               const swipe = info.offset.y;
-
-              if (swipe < -80) paginate(1); // up
-              else if (swipe > 80) paginate(-1); // down
+              if (swipe < -80) paginate(1);
+              else if (swipe > 80) paginate(-1);
             }}
             className="absolute inset-0 flex flex-col justify-center px-4"
           >
@@ -209,13 +222,22 @@ export default function WorkSection({setShowNavbar}) {
             {/* VIDEO */}
             <div className="w-full mb-6">
               <div className="p-[2px] rounded-2xl bg-gradient-to-br from-lime-400 to-orange-400">
-                <div className="bg-black rounded-2xl p-2">
+                <div className="bg-black rounded-2xl p-2 relative">
+
+                  {videoLoading && (
+                    <div className="absolute inset-0 flex items-center justify-center z-10">
+                      <div className="w-8 h-8 border-4 border-dotted border-lime-400 border-t-orange-400 rounded-full animate-spin"></div>
+                    </div>
+                  )}
+
                   <video
                     src={projects[mobileIndex].video}
                     autoPlay
                     muted
                     loop
                     playsInline
+                    preload="metadata"
+                    onLoadedData={() => setVideoLoading(false)}
                     className="w-full h-[240px] object-cover rounded-xl"
                   />
                 </div>
@@ -224,17 +246,15 @@ export default function WorkSection({setShowNavbar}) {
 
             {/* CONTENT */}
             <div className="flex flex-col gap-4">
-
-              <h2 className="font-heading text-2xl font-semibold leading-snug tracking-[-0.01em]">
+              <h2 className="font-heading text-2xl font-semibold">
                 {projects[mobileIndex].title}
               </h2>
 
-              <p className="text-white/70 text-sm leading-relaxed">
+              <p className="text-white/70 text-sm">
                 {projects[mobileIndex].description}
               </p>
 
               <div className="flex items-center justify-between mt-2">
-
                 <Link to={`/projects/${projects[mobileIndex]._id}`}>
                   <div className="rounded-full p-[1px] bg-gradient-to-r from-lime-400 to-orange-400">
                     <div className="px-4 py-2 rounded-full bg-black text-xs">
@@ -247,16 +267,13 @@ export default function WorkSection({setShowNavbar}) {
                   [{String(mobileIndex + 1).padStart(2, "0")} /{" "}
                   {String(projects.length).padStart(2, "0")}]
                 </div>
-
               </div>
-
             </div>
 
           </motion.div>
         </AnimatePresence>
 
       </div>
-
     </div>
   );
 }
