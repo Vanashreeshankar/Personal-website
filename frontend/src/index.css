@@ -9,89 +9,90 @@
   box-sizing: border-box;
 }
 
-/* DARK THEME */
+/* DARK THEME + NO OVERFLOW */
 html,
 body,
 #root {
   height: 100%;
   margin: 0;
   font-family: 'Inter', sans-serif;
+
   background-color: black;
   scroll-behavior: smooth;
+ 
   overscroll-behavior: none;
+  /* Optional: prevent accidental scroll during animations */
   cursor: none;
 }
 
-/* IMPORTANT: do NOT block vertical scroll */
+
+/* Prevent scrollbar flash on initial load */
 body {
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
-/*  GLOBAL SCROLLBAR FIX   */
+/* GLOBAL SCROLLBAR */
 
-/* Apply to ALL scrollable elements */
-*::-webkit-scrollbar {
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(132, 255, 0, 0.7) #0a0a0a;
+}
+
+/* Chrome / Edge / Safari */
+::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 
 /* Track */
-*::-webkit-scrollbar-track {
-  background: #0a0a0a !important;
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
   border-radius: 10px;
 }
 
-/* Gradient Thumb (FORCED) */
-*::-webkit-scrollbar-thumb {
+/* Thumb */
+::-webkit-scrollbar-thumb {
   background: linear-gradient(
     180deg,
-    #84ff00,
-    #ff8c00
-  ) !important;
+    rgba(132, 255, 0, 0.7),   /* lime */
+    rgba(255, 140, 0, 0.7)    /* orange */
+  );
   border-radius: 10px;
   box-shadow: 0 0 6px rgba(132, 255, 0, 0.4);
+  transition: all 0.3s ease;
 }
 
 /* Hover */
-*::-webkit-scrollbar-thumb:hover {
+::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(
     180deg,
-    #84ff00,
-    #ff8c00
-  ) !important;
-  box-shadow:
+    rgba(132, 255, 0, 1),
+    rgba(255, 140, 0, 1)
+  );
+  box-shadow: 
     0 0 10px rgba(132, 255, 0, 0.7),
     0 0 16px rgba(255, 140, 0, 0.5);
 }
 
 /* Active */
-*::-webkit-scrollbar-thumb:active {
+::-webkit-scrollbar-thumb:active {
   background: linear-gradient(
     180deg,
-    #84ff00,
-    #ff8c00
-  ) !important;
+    rgba(132, 255, 0, 1),
+    rgba(255, 120, 0, 1)
+  );
 }
 
 /* Corner */
-*::-webkit-scrollbar-corner {
+::-webkit-scrollbar-corner {
   background: #0a0a0a;
 }
 
-/* FORCE scrollbars inside div/section/main */
-div::-webkit-scrollbar-thumb,
-section::-webkit-scrollbar-thumb,
-main::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #84ff00, #ff8c00) !important;
-}
-
-/* FIREFOX (no gradient support) */
-
-* {
-  scrollbar-width: thin;
-  scrollbar-color: #84ff00 #0a0a0a;
-}
-
+/*::-webkit-scrollbar {
+  display: none;
+  }*/
 
 /* vertical text support */
 .writing-mode-horizontal {
@@ -106,16 +107,18 @@ main::-webkit-scrollbar-thumb {
   scroll-snap-align: center;
 }
 
-/* Smooth Gradient Animation */
+/*  Smooth Gradient Animation */
 @keyframes gradientShift {
   0% {
     transform: translateY(-2%) scale(1.02);
     opacity: 0.9;
   }
+
   50% {
     transform: translateY(2%) scale(1.05);
     opacity: 1;
   }
+
   100% {
     transform: translateY(-2%) scale(1.02);
     opacity: 0.9;
@@ -126,19 +129,21 @@ main::-webkit-scrollbar-thumb {
   animation: gradientShift 10s ease-in-out infinite;
 }
 
-/* Contact autofill fix */
+/* Contact */
+/* Fix white autofill background */
 input:-webkit-autofill,
 textarea:-webkit-autofill {
   -webkit-box-shadow: 0 0 0 1000px #141414 inset !important;
   -webkit-text-fill-color: white !important;
 }
 
-/* Fade animation */
+/* Smooth fade animation */
 @keyframes fadeIn {
   from {
     opacity: 0;
     transform: translateY(10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -156,27 +161,42 @@ textarea:-webkit-autofill {
 
 .no-scrollbar {
   -ms-overflow-style: none;
+  /* IE & Edge */
   scrollbar-width: none;
+  /* Firefox */
 }
 
-/* PREMIUM BACKGROUND */
+
+
+/* PREMIUM BLACK GRADIENT BACKGROUND */
 .skills-bg {
   background:
+    /* CENTER SOFT LIGHT */
     radial-gradient(circle at 50% 40%,
       rgba(255, 255, 255, 0.10),
       rgba(255, 255, 255, 0.04) 30%,
       transparent 60%),
+
+    /*  LIGHT + SHADOW LINES (paired = 3D) */
     repeating-linear-gradient(to right,
       rgba(255, 255, 255, 0.05) 0px,
+      /* light edge */
       rgba(255, 255, 255, 0.05) 1px,
+
       rgba(0, 0, 0, 0.6) 1px,
+      /* shadow edge */
       rgba(0, 0, 0, 0.6) 2px,
+
       transparent 2px,
-      transparent 40px),
+      transparent 40px
+      /*  gap reduced */
+    ),
+
+    /* BASE */
     linear-gradient(to bottom, #050505, #000000);
 }
 
-/* Work */
+/*work*/
 .snap-y {
   scroll-snap-type: y mandatory;
 }
@@ -185,35 +205,47 @@ textarea:-webkit-autofill {
   scroll-snap-align: start;
 }
 
-/* chatbot */
+/*chatbot*/
 @keyframes spinSlow {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .animate-spinSlow {
   animation: spinSlow 6s linear infinite;
 }
 
-/* Desktop cursor */
-@media (min-width: 768px) {
+
+@media (min-width : 768px) {
+
   html,
   body {
     cursor: none;
   }
+
 }
 
-/* Hide scrollbar on mobile */
+/* Hide scrollbar on small screens (mobile) */
 @media (max-width: 768px) {
+
+  /* Chrome, Safari, Edge */
   ::-webkit-scrollbar {
     display: none;
   }
 
+  /* Firefox */
   * {
     scrollbar-width: none;
   }
 
+  /* IE/Edge legacy */
   body {
     -ms-overflow-style: none;
   }
+
 }
