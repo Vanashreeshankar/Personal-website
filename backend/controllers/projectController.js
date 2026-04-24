@@ -2,7 +2,7 @@ import Project from "../models/project.js";
 
 export const getProjects = async (req, res) => {
   try {
-    const projects = await Project.find();
+    const projects = await Project.find().sort({ _id: 1 }); // FIX
     res.json(projects);
   } catch (error) {
     res.status(500).json({ error: "Failed to fetch projects" });
