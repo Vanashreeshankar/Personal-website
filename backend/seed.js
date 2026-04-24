@@ -156,19 +156,19 @@ console.log("DB Name:", mongoose.connection.name);
     console.log("Inserting data...");
     const inserted = await Project.insertMany(data);
 
-    console.log(`Inserted ${inserted.length} records ✅`);
+    console.log(`Inserted ${inserted.length} records `);
 
-    // ✅ Check if data actually exists
+    //  Check if data actually exists
     const count = await Project.countDocuments();
     console.log("Total documents in DB:", count);
 
-    // ✅ List collections
+    //  List collections
     const collections = await Project.db.db.listCollections().toArray();
     console.log("Collections:", collections.map(c => c.name));
 
     process.exit(0);
   } catch (error) {
-    console.error("Seeding failed ❌", error);
+    console.error("Seeding failed ", error);
     process.exit(1);
   }
 };
