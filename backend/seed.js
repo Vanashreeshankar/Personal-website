@@ -39,6 +39,46 @@ const data = [
     "github": "https://github.com/Vanashreeshankar/MEAN-CRM-Website",
     "demo": "https://crm-frontend-website.vercel.app/"
   },
+
+  {
+  "title": "Flip-Book Design",
+  "description": "Designed and developed an interactive digital service catalog that combines editorial-style visual design, realistic page interactions, motion, and sound to create an immersive browsing experience.",
+  
+  "video": "https://files.catbox.moe/v5o1nu.mp4",
+  
+  "problem": "Creating a digital service interface that feels tactile and exploratory rather than static, while giving each creative discipline a distinct interaction that communicates its capabilities through direct user engagement.",
+
+  "features": [
+    "Built a realistic flip-book interface with interactive forward and reverse page dragging",
+    "Added synchronized page-turn audio to reinforce the physical feel of flipping through pages",
+    "Designed unique micro-interactions for each service instead of relying on a uniform page layout",
+    "Web page uses interactive hover states to reveal and respond to interface elements",
+    "Full Stack page uses an interactive layered architecture where hovering over each layer reveals the tools and frameworks used",
+    "UI Design page uses a doodle interaction that progressively reveals the underlying content",
+    "3D & Motion page begins with a cube that dynamically explodes into six faces, creating an interactive 3D composition",
+    "Enabled users to rotate and explore the 3D object interactively",
+    "Created distinct visual personalities for Web, Full Stack, UI Design, and 3D & Motion",
+    "Combined typography, motion, depth, sound, 3D elements, and interaction into a cohesive service presentation"
+  ],
+
+  "impact": "Transformed a conventional service presentation into an exploratory interface where users discover capabilities through interaction rather than simply reading static information.",
+
+  "metrics": [
+    "Created four service experiences with distinct interaction patterns",
+    "Implemented bidirectional page transitions with synchronized audio feedback",
+    "Combined 2D interaction, motion, sound, and interactive 3D elements within a single experience"
+  ],
+
+  "learnings": "Deepened expertise in interaction design, micro-interactions, motion systems, page-transition behavior, interactive 3D, and designing digital experiences where user actions directly reveal information.",
+  
+  "tech": ["React", "TypeScript", "CSS", "Framer Motion", "React PageFlip", "Spline"],
+  
+  "role": "Frontend Developer & UI Designer",
+  
+  "github": "https://github.com/Vanashreeshankar/Flip-Book-Design",
+  "demo": "https://vanashree-capabilities.vercel.app/"
+},
+  
   {
     "title": "Portfolio Website",
     "description": "Developed a full-stack portfolio platform with a robust contact system that captures, stores, and delivers user queries in real time via backend-driven email integration.",
