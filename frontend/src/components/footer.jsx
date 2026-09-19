@@ -118,6 +118,26 @@ export default function Footer() {
               </span>
             </a>
 
+            {/* Dribbble */}
+             <a
+              href="https://dribbble.com/Vana_shree"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex flex-col items-center gap-2"
+            >
+             <svg
+               className="w-6 h-6 md:w-7 md:h-7 text-gray-500 group-hover:text-lime-400 transition duration-300 group-hover:scale-110 group-hover:drop-shadow-[0_0_5px_#A3FF12]"
+               fill="currentColor"
+               viewBox="0 0 24 24"
+              >
+               <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm6.93 4.62a8.01 8.01 0 011.74 4.98c-1.45-.3-2.84-.34-4.16-.22-.15-.36-.31-.72-.48-1.08 1.22-.5 2.19-1.19 2.9-2.08zM12 3.99c1.73 0 3.32.66 4.51 1.74-.61.78-1.45 1.39-2.52 1.83a38.57 38.57 0 00-3.03-4.17c.33-.06.68-.09 1.04-.09zM8.79 4.72a35.9 35.9 0 013.03 4.02c-2.4.64-4.91.64-7.15.64A8.03 8.03 0 018.79 4.72zM4.04 11.38c2.57.01 5.42-.05 8.28-.83.18.33.34.66.5 1-2.98.89-5.13 2.66-6.43 4.12a8 8 0 01-2.35-4.29zm3.66 5.55c1.14-1.34 3.02-3.13 5.87-4.02.78 2.03 1.22 3.73 1.42 4.67A7.97 7.97 0 017.7 16.93zm9.12-.51c-.23-1.04-.69-2.73-1.43-4.64 1.16-.12 2.39-.07 3.67.21a8.03 8.03 0 01-2.24 4.43z" />
+            </svg>
+
+            <span className="text-xs text-gray-500 group-hover:text-white transition">
+             Explore
+            </span>
+          </a>
+
           </motion.div>
 
           {/* RIGHT */}
